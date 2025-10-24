@@ -30,7 +30,7 @@ export default function LoginPage() {
         if (emailError || passwordError) {
             if(emailError)showInlineError("email", emailError);
             if(passwordError)showInlineError("password", passwordError);
-           const firstErrorField = document.querySelector("[data-error='true']") || document.getElementById("email");
+            const firstErrorField = document.querySelector("[data-error='true']") || document.getElementById("email");
             firstErrorField.focus();
             return;
         }
