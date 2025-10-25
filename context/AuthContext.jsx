@@ -1,4 +1,4 @@
-import React, { use }  from "react";
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
@@ -8,25 +8,26 @@ function generateAuthToken() {
 }
 
 function readUserFromStorage() {
-    try{
-        return JSON.parse(localStorage.getItem("user")) || null;
-    } catch {
-        console.error("Error reading user from localStorage");
-        return null;
-    }
+  try {
+    return JSON.parse(localStorage.getItem("users")) || [];
+  } catch {
+    console.error("Error reading users from storage");
+    return [];
+  }
 }
 
-function writeUserToStorage(user) {
-    try{
-        localStorage.setItem("user", JSON.stringify(user));
-    } catch {
-        console.error("Error writing user to localStorage");
-    }
+function writeUserToStorage(users) {
+  try {
+    localStorage.setItem("users", JSON.stringify(users));
+  } catch {
+    console.error("Error writing users to storage");
+  }
 }
+
 
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(() =>{
-        const storedUser = readUserFromStorage();
+        const storedUser = localStorage.getItem("auth_user");
         return storedUser ? JSON.parse(storedUser) : null;
     })
 

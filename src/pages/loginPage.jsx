@@ -1,7 +1,9 @@
 import { useState, useRef } from "react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { isValidEmail, validatePassword } from "../utilities/validators";
+import Toast from "../../components/Toast";
+
 
 export default function LoginPage() {
     const { login } = useAuth();
@@ -9,6 +11,7 @@ export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState({});
+    const [toast, setToast] = useState(null);
     const submitButtonRef = useRef(null);
 
     function showInlineError(name, message) {
@@ -35,12 +38,53 @@ export default function LoginPage() {
             return;
         }
         try {
-            await login(email, password);
-            navigation("/dashboard");
+            await login({ email, password });
+            setToast({ message: "Login successful", type: "success" });
+            setTimeout(() => { navigation("/dashboard", { replace: true }) }, 600);
         } catch (error) {
-            showInlineError("general", error.message);
-        } finally {
-            submitButtonRef.current.disabled = false;
+            setToast({ message: error.message || "Login failed", type: "error" });
         }
     }
+
+    return (
+        <div className="login-page">
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit} noValidate className="login-container">
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    name="email"
+                    onChange={e => { setEmail(e.target.value); clearInlineError("email") }}
+                    autoComplete="email"
+                    aria-describedby="email-error"
+                    data-error={error.email ? "true" : "false"}
+                />
+                <span id="email-error" role="alert" style={{ color: "red" }} aria-live="assertive">
+                    {error.email}
+                </span>
+                <label htmlFor="password">Password:</label>
+                <input
+                    type="password"
+                    id="password"
+                    value={password}
+                    name="password"
+                    onChange={e => { setPassword(e.target.value); clearInlineError("password") }}
+                    autoComplete="current-password"
+                    aria-describedby="password-error"
+                    data-error={error.password ? "true" : "false"}
+                />
+                <span id="password-error" role="alert" style={{ color: "red" }} aria-live="assertive">
+                    {error.password}
+                </span>
+                <button type="submit" ref={submitButtonRef}>Login</button>
+            </form>
+            <Toast
+                message={toast?.message}
+                type={toast?.type}
+                onClose={() => setToast(null)}
+            />
+        </div>
+    )
 }
