@@ -8,6 +8,8 @@ import AuthLayout from "./layout/AuthLayout";
 import LoginPage from "./pages/loginPage";
 import SigninPage from "./pages/SigninPage";
 import ProtectedRoute from "../components/protectedRoute";
+import DashboardLayout from './layout/DashbardLayout';
+import Dashboard from './pages/Dashboard';
 
 export default function App() {
   return(
@@ -20,11 +22,13 @@ export default function App() {
               <Route path="login" element={<LoginPage />} />
               <Route path="signup" element={<SigninPage />} />
             </Route>
-            <Route path="dashboard" element={
+            <Route element={
               <ProtectedRoute>
-                <DashboardPage />
+                <DashboardLayout />
               </ProtectedRoute>
-            } />
+            }>
+              <Route path='dashboard' element={<Dashboard />} />
+            </Route>
           </Route>
         </Routes>
       </Router>

@@ -32,7 +32,7 @@ export function AuthProvider({ children }) {
     })
 
     const [token, setToken] = useState(() => {
-        return localStorage.getItem("auth_token") || null;
+        return localStorage.getItem("ticketapp_session") || null;
     })
     const [loading, setLoading] = useState(false);
 
@@ -42,8 +42,8 @@ export function AuthProvider({ children }) {
     }, [user]);
 
     useEffect(() => {
-        if (token) localStorage.setItem("auth_token", token);
-        else localStorage.removeItem("auth_token");
+        if (token) localStorage.setItem("ticketapp_session", token);
+        else localStorage.removeItem("ticketapp_session");
     }, [token]);
 
     async function signup({ name, email, password }) {
