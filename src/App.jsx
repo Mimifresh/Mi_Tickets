@@ -10,6 +10,7 @@ import SigninPage from "./pages/SigninPage";
 import ProtectedRoute from "../components/protectedRoute";
 import DashboardLayout from './layout/DashbardLayout';
 import Dashboard from './pages/Dashboard';
+import TicketList from './pages/TicketList';
 
 export default function App() {
   return(
@@ -28,6 +29,7 @@ export default function App() {
               </ProtectedRoute>
             }>
               <Route path='dashboard' element={<Dashboard />} />
+              <Route path='tickets' element={<TicketList />} />
             </Route>
           </Route>
         </Routes>

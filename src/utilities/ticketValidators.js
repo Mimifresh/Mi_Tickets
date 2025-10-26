@@ -1,4 +1,4 @@
-export const ALLOWED_STATUSES = ["open", "in progress", "closed"];
+export const ALLOWED_STATUSES = ["open", "in_progress", "closed"];
 
 export function validateTitle(title) {
     if(!title || !String(title).trim()) {
@@ -31,12 +31,23 @@ export function validateDescription(description) {
 }
 
 export function validatePriority(priority) {
-    if(!priority) return "Priority is required";
-    const allowedPriorities = Number.NaN(priority) || priority < 1 || priority > 5;
-    if(allowedPriorities) {
-        return "Priority must be a number between 1 and 5";
-    }
-    return "";
+
+  if (priority === undefined || priority === null || priority === "") {
+    return ""; // Optional field, so no error
+  }
+
+  // Convert to number
+  const num = Number(priority);
+
+  if (Number.isNaN(num)) {
+    return "Priority must be a number.";
+  }
+
+  if (num < 1 || num > 5) {
+    return "Priority must be between 1 and 5.";
+  }
+
+  return "";
 }
 
 export function validateTicketForm({ title, status, description, priority }) {
