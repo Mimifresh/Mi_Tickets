@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function TicketCard({ ticket, onEdit, onDelete }) {
-
+    if(!ticket) return null;
     const statusLabel = ticket.status || 'Unknown';
     const tagClass = `status-tag status-${statusLabel.toLowerCase()}`;
     return (
