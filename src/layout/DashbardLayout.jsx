@@ -7,9 +7,10 @@ export default function DashboardLayout() {
     const navigate = useNavigate();
 
     function handleLogout() {
+        localStorage.removeItem("ticketapp_session")
         logout();
         document.body.focus?.()
-        navigate("/auth/login", { replace: true });
+        navigate("/", { replace: true });
     }
 
     return(

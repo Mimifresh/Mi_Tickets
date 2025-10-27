@@ -1,16 +1,129 @@
+/* ---------- Layout basics ---------- */
 
+/* container rule: centered, max-width 1440px */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}
 
-/* Toast styles */
+/* base type and page background */
+:root{
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #0ea5e9; /* blue accent */
+  --accent-600: #0284c7;
+  --open: #16a34a; /* green */
+  --in-progress: #f59e0b; /* amber */
+  --closed: #6b7280; /* gray */
+  --focus: rgba(14,165,233,0.18);
+}
+html,body,#root { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
+/* ---------- Hero with wavy SVG and decorative circles ---------- */
 
-/* Loging page styles */
+.hero {
+  position: relative;
+  overflow: visible;
+  background: linear-gradient(180deg,#ffffff 0%, #f1f8fc 100%);
+  padding: 4rem 0;
+}
 
-
-.login-container {
-  display: flex;
-  flex-direction: column;
+/* hero inner container (centered) */
+.hero .hero-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
   align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
+}
+
+/* hero text block */
+.hero .hero-title {
+  font-size: clamp(1.6rem, 3.8vw, 2.8rem);
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
+}
+.hero .hero-sub {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+  max-width: 55ch;
+}
+
+/* wave SVG at bottom of hero — uses svg markup inline in JSX/HTML */
+.hero .hero-wave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  line-height: 0;
+}
+
+/* decorative circles overlapping hero (two or more) */
+.hero .circle {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(0.6px);
+  opacity: 0.12;
+  pointer-events: none;
+}
+.hero .circle.c1 {
+  width: 220px; height: 220px;
+  right: 6%;
+  top: 10%;
+  background: var(--accent-600);
+  transform: translateZ(0);
+}
+.hero .circle.c2 {
+  width: 140px; height: 140px;
+  left: 6%;
+  top: 34%;
+  background: #7dd3fc;
+}
+.hero .circle.c3 {
+  width: 90px; height: 90px;
+  left: 20%;
+  bottom: 48px;
+  background: #bae6fd;
+}
+
+/* ---------- Card styles for stats and tickets ---------- */
+
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
+  color: var(--text);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
+  gap: 1rem;
+}
+
+/* stat card */
+.stat-card {
+  display:flex;
+  flex-direction:column;
+  gap:0.5rem;
+}
+.stat-value { font-size: 1.6rem; font-weight:700; }
+.stat-label { color:var(--muted); font-size:0.9rem; }
+
+/* ticket list grid */
+.tickets-grid {
+  display: grid;
 }

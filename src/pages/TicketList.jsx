@@ -22,10 +22,10 @@ export default function TicketList() {
     const sessionKey = localStorage.getItem("ticketapp_session");
     if (!isAuthenticated || !sessionKey) {
       setToast({ message: "Your session has expired — please log in again.", type: "error" });
-      setTimeout(() => navigate("/auth/login", { replace: true }), 800);
+      setTimeout(() => {navigate("/auth/login", { replace: true });}, 800);
       return;
     }
-  }, [isAuthenticated, navigate]);
+  }, [navigate]);
 
 
   async function load() {
