@@ -154,17 +154,18 @@ html,body,#root {
 
 /* ------ AUTH PAGE STYLES ------ */
 .auth-page {
+  margin-top: 5em;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 80vh;
+  min-height: 50vh;
   background: var(--secondary);
   padding: 40px 0;
 }
 
 .auth-card {
   background: var(--primary);
-  width: 100%;
+  width: 80%;
   max-width: 420px;
   padding: 32px;
   border-radius: 10px;
@@ -366,6 +367,22 @@ html,body,#root {
   background-color: var(--accent-lighter);
 }
 
+.auth-switch {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-switch a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
 
 /* ticket list grid (responsive) */
 .tickets-grid {
@@ -403,3 +420,24 @@ html,body,#root {
 
 /* accessible contrast helpers: ensure focus ring visible on interactive elements */
 button:focus, a:focus { outline: 3px solid rgba(30,58,138,0.14); outline-offset:2px; }
+
+
+/* Responsive forms */
+@media (max-width: 500px) {
+  .auth-card {
+    width: 92%;
+    padding: 24px;
+  }
+
+  .auth-page {
+    padding: 20px 0;
+  }
+
+  .auth-card h2 {
+    font-size: 24px;
+  }
+
+  .auth-subtitle {
+    font-size: 13px;
+  }
+}

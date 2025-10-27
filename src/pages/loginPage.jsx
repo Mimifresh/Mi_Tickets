@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { isValidEmail, validatePassword } from "../utilities/validators";
+import { Link } from "react-router-dom";
 import Toast from "../../components/Toast";
 
 
@@ -66,6 +67,11 @@ export default function LoginPage() {
                 </div>
 
                 <button className="btn-primary auth-btn" type="submit">Login</button>
+
+                <p className="auth-switch">
+                    Don’t have an account?
+                    <Link to="/auth/signup"> Create one</Link>
+                </p>
             </form>
             </div>
         </div>

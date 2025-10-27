@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { isValidEmail, validatePassword, validateName } from "../utilities/validators";
 import Toast from "../../components/Toast";
 
@@ -98,6 +98,10 @@ export default function SignupPage() {
           </div>
 
           <button className="btn-primary auth-btn" type="submit">Create Account</button>
+            <p className="auth-switch">
+                Already have an account?
+                <Link to="/auth/login"> Login</Link>
+            </p>
         </form>
       </div>
     </div>
