@@ -67,39 +67,39 @@ export default function SignupPage() {
   }
 
   return (
-    <div>
-      <h2>Create Account</h2>
-      <form onSubmit={handleSubmit} noValidate>
-        <label htmlFor="name">Full Name:</label>
-        <input id="name" value={fields.name} onChange={e => setField("name", e.target.value)} />
-        <span>{error.name}</span>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h2>Create Account</h2>
+        <p className="auth-subtitle">Join Mi Tickets today</p>
 
-        <label htmlFor="email">Email:</label>
-        <input id="email" value={fields.email} onChange={e => setField("email", e.target.value)} />
-        <span>{error.email}</span>
+        <form onSubmit={handleSubmit} noValidate>
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input id="name" value={fields.name} onChange={e => setField("name", e.target.value)} />
+            <small className="error">{error.name}</small>
+          </div>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={fields.password}
-          onChange={e => setField("password", e.target.value)}
-        />
-        <span>{error.password}</span>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input id="email" value={fields.email} onChange={e => setField("email", e.target.value)} />
+            <small className="error">{error.email}</small>
+          </div>
 
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input
-          type="password"
-          id="confirmPassword"
-          value={fields.confirmPassword}
-          onChange={e => setField("confirmPassword", e.target.value)}
-        />
-        <span>{error.confirmPassword}</span>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input id="password" type="password" value={fields.password} onChange={e => setField("password", e.target.value)} />
+            <small className="error">{error.password}</small>
+          </div>
 
-        <button type="submit">Create Account</button>
-      </form>
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password" value={fields.confirmPassword} onChange={e => setField("confirmPassword", e.target.value)} />
+            <small className="error">{error.confirmPassword}</small>
+          </div>
 
-      <Toast message={toast?.message} type={toast?.type} onClose={() => setToast(null)} />
+          <button className="btn-primary auth-btn" type="submit">Create Account</button>
+        </form>
+      </div>
     </div>
   );
 }

@@ -47,44 +47,28 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="login-page">
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit} noValidate className="login-container">
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    value={email}
-                    name="email"
-                    onChange={e => { setEmail(e.target.value); clearInlineError("email") }}
-                    autoComplete="email"
-                    aria-describedby="email-error"
-                    data-error={error.email ? "true" : "false"}
-                />
-                <span id="email-error" role="alert" style={{ color: "red" }} aria-live="assertive">
-                    {error.email}
-                </span>
-                <label htmlFor="password">Password:</label>
-                <input
-                    type="password"
-                    id="password"
-                    value={password}
-                    name="password"
-                    onChange={e => { setPassword(e.target.value); clearInlineError("password") }}
-                    autoComplete="current-password"
-                    aria-describedby="password-error"
-                    data-error={error.password ? "true" : "false"}
-                />
-                <span id="password-error" role="alert" style={{ color: "red" }} aria-live="assertive">
-                    {error.password}
-                </span>
-                <button type="submit" ref={submitButtonRef}>Login</button>
+        <div className="auth-page">
+            <div className="auth-card">
+            <h2>Welcome Back</h2>
+            <p className="auth-subtitle">Login to continue to Mi Tickets</p>
+
+            <form onSubmit={handleSubmit} noValidate>
+                <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} />
+                <small className="error">{error.email}</small>
+                </div>
+
+                <div className="form-group">
+                <label htmlFor="password">Password</label>
+                <input id="password" type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                <small className="error">{error.password}</small>
+                </div>
+
+                <button className="btn-primary auth-btn" type="submit">Login</button>
             </form>
-            <Toast
-                message={toast?.message}
-                type={toast?.type}
-                onClose={() => setToast(null)}
-            />
+            </div>
         </div>
-    )
+        );
+
 }

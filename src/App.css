@@ -1,129 +1,405 @@
-/* ---------- Layout basics ---------- */
+:root{
 
-/* container rule: centered, max-width 1440px */
+   --primary: #ffffff;
+  --secondary: #f5f5f5;
+  /* Color palette / design tokens */
+  --color-bg: #f7fafc;           /* page background */
+  --color-surface: #ffffff;      /* cards, panels */
+  --color-text: #0f172a;         /* primary text */
+  --color-muted: #64748b;        /* subdued text */
+               /* primary accent (blue) */
+  --accent: #2e7d32; /* Main green */
+  --accent-light: #4caf50; /* Light hover green */
+  --accent-lighter: rgba(76, 175, 80, 0.08); /* Soft backgrounds */
+  --brand: #b91d73;              /* brand color (used sparingly) */
+
+  /* status colors (required mapping) */
+  --status-open-bg: #ecfdf5;     /* green 50 */
+  --status-open-text: #065f46;   /* green 700 */
+
+  --status-in_progress-bg: #fff7ed; /* amber 50 */
+  --status-in_progress-text: #92400e; /* amber-700 */
+
+  --status-closed-bg: #f8fafc;   /* gray/neutral */
+  --status-closed-text: #374151; /* gray-700 */
+
+
+  /* sizing scale */
+  --space-xs: 6px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+
+  /* typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --type-base: 16px;
+  --type-h1: 32px;
+  --type-h2: 24px;
+  --type-h3: 18px;
+}
+
+/* Base */
+* { box-sizing: border-box; }
+html,body,#root {
+  max-width: 1440px;
+  width: 100%;
+  height: 100%;
+   margin:0;
+   font-family: var(--font-sans);
+   font-size: var(--type-base);
+   color:var(--color-text);
+   background:var(--color-bg); 
+   -webkit-font-smoothing:antialiased; 
+   -moz-osx-font-smoothing:grayscale; }
+
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: absolute;
+  width: 100%;
+  padding: 20px 0;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.nav-link {
+  margin-right: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  text-align: center;
+  color: var(--text-color);
+  background: var(--primary);
+  padding: 140px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-title {
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  color: var(--text-light);
+  margin-bottom: 30px;
+}
+
+.hero-buttons .btn-primary,
+.btn-outline {
+  margin: 0 10px;
+}
+
+.hero-wave {
+  margin-top: 60px;
+}
+
+/* Decorative circles */
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  background: var(--accent-lighter);
+  border-radius: 50%;
+}
+
+.hero::before {
+  width: 150px;
+  height: 150px;
+  top: 40px;
+  left: -70px;
+}
+
+.hero::after {
+  width: 200px;
+  height: 200px;
+  bottom: 80px;
+  right: -100px;
+}
+
+
+/* Container rule (max width 1440px centered) */
 .container {
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 1rem;
-  box-sizing: border-box;
+  width: 100%;
 }
 
-/* base type and page background */
-:root{
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --text: #0f172a;
-  --muted: #475569;
-  --accent: #0ea5e9; /* blue accent */
-  --accent-600: #0284c7;
-  --open: #16a34a; /* green */
-  --in-progress: #f59e0b; /* amber */
-  --closed: #6b7280; /* gray */
-  --focus: rgba(14,165,233,0.18);
-}
-html,body,#root { height: 100%; }
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  background: var(--bg);
-  color: var(--text);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.hero-content {
+  margin-top: 6em;
 }
 
-/* ---------- Hero with wavy SVG and decorative circles ---------- */
 
+/* ------ AUTH PAGE STYLES ------ */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background: var(--secondary);
+  padding: 40px 0;
+}
+
+.auth-card {
+  background: var(--primary);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 25px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  text-align: center;
+}
+
+.auth-card h2 {
+  margin-bottom: 10px;
+}
+
+.auth-subtitle {
+  color: var(--text-light);
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.form-group {
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #2e7d32;
+  border-radius: 6px;
+}
+
+.form-group input:focus {
+  outline: 2px solid var(--accent-light);
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.auth-btn {
+  width: 100%;
+  margin-top: 10px;
+}
+
+
+
+/* Focus: visible, accessible */
+:focus {
+  outline: 3px solid rgba(29,78,216,0.18);
+  outline-offset: 2px;
+}
+
+/* Typography helpers */
+.h1 { font-size: var(--type-h1); line-height:1.05; margin:0 0 var(--space-sm) 0; }
+.h2 { font-size: var(--type-h2); margin:0 0 var(--space-sm) 0; }
+.h3 { font-size: var(--type-h3); margin:0 0 var(--space-sm) 0; }
+.lead { color:var(--color-muted); margin-top: 6px; }
+
+/* Header/Nav layout (collapsible nav for mobile) */
+.app-header {
+  background: var(--color-surface);
+  border-bottom: 1px solid rgba(12,18,26,0.04);
+  position: sticky; top:0; z-index:50;
+}
+.header-inner {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  padding: 0.75rem 0;
+}
+.brand { display:flex; align-items:center; gap:12px; }
+.brand-title { font-weight:700; font-size:1.125rem; margin:0; }
+
+/* nav */
+.main-nav { display:flex; gap: 0.75rem; align-items:center; }
+.nav-toggle { display:none; } /* shown on mobile */
+.nav-link { color:var(--color-text); text-decoration:none; padding:6px 8px; border-radius:6px; }
+.nav-link.active { background: rgba(30,58,138,0.06); color:var(--accent-600); font-weight:600; }
+
+/* hero with wavy bottom edge + overlapping circle */
 .hero {
+  background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
+  padding: var(--space-lg) 0;
   position: relative;
   overflow: visible;
-  background: linear-gradient(180deg,#ffffff 0%, #f1f8fc 100%);
-  padding: 4rem 0;
+}
+.hero-inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding: 0 var(--space-md); }
+.hero-graphic { position:relative; width:320px; height:220px; }
+
+/* wavy svg at bottom of hero */
+.hero::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-1px;
+  height:120px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="%23f8fafc" d="M0,40 C280,100 560,0 720,40 C880,80 1160,0 1440,40 L1440 120 L0 120 Z"/></svg>') bottom center / cover no-repeat;
+  pointer-events:none;
 }
 
-/* hero inner container (centered) */
-.hero .hero-inner {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.25rem;
-  align-items: center;
+/* overlapping decorative circle (one of at least two) */
+.decoration-circle {
+  position:absolute;
+  border-radius:50%;
+  width:120px; height:120px;
+  background: linear-gradient(135deg, rgba(185,29,115,0.12), rgba(30,58,138,0.12));
+  box-shadow: 0 8px 30px rgba(15,23,42,0.06);
+  z-index: 10;
 }
 
-/* hero text block */
-.hero .hero-title {
-  font-size: clamp(1.6rem, 3.8vw, 2.8rem);
-  line-height: 1.05;
-  margin: 0 0 0.5rem;
-}
-.hero .hero-sub {
-  margin: 0 0 1.25rem;
-  color: var(--muted);
-  max-width: 55ch;
-}
+/* utility examples to place circles */
+.dec-circle-top-left { left:-40px; top: 20px; transform: scale(1.1); }
+.dec-circle-bottom-right { right:-40px; bottom:-30px; transform: scale(0.9); }
 
-/* wave SVG at bottom of hero — uses svg markup inline in JSX/HTML */
-.hero .hero-wave {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-  line-height: 0;
-}
-
-/* decorative circles overlapping hero (two or more) */
-.hero .circle {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(0.6px);
-  opacity: 0.12;
-  pointer-events: none;
-}
-.hero .circle.c1 {
-  width: 220px; height: 220px;
-  right: 6%;
-  top: 10%;
-  background: var(--accent-600);
-  transform: translateZ(0);
-}
-.hero .circle.c2 {
-  width: 140px; height: 140px;
-  left: 6%;
-  top: 34%;
-  background: #7dd3fc;
-}
-.hero .circle.c3 {
-  width: 90px; height: 90px;
-  left: 20%;
-  bottom: 48px;
-  background: #bae6fd;
-}
-
-/* ---------- Card styles for stats and tickets ---------- */
-
+/* Cards (for stats, tickets, features) */
 .card {
-  background: var(--card-bg);
-  border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 10px 30px rgba(2,6,23,0.06);
-  color: var(--text);
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: var(--space-sm);
+  box-shadow: 0 8px 24px rgba(2,6,23,0.06);
+  border: 1px solid rgba(2,6,23,0.03);
 }
 
+/* Stats grid */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px,1fr));
-  gap: 1rem;
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 
-/* stat card */
-.stat-card {
+/* Ticket card specifics (also used by TicketCard component) */
+.ticket-card {
   display:flex;
   flex-direction:column;
-  gap:0.5rem;
+  gap:8px;
+  padding: 14px;
 }
-.stat-value { font-size: 1.6rem; font-weight:700; }
-.stat-label { color:var(--muted); font-size:0.9rem; }
+.ticket-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.ticket-title { margin:0; font-weight:600; font-size:1rem; }
+.ticket-description { margin:0; color:var(--color-muted); font-size:0.95rem; }
 
-/* ticket list grid */
-.tickets-grid {
-  display: grid;
+/* status tag mapping (use status as class suffix) */
+.status-tag {
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:0.82rem;
+  font-weight:600;
+  text-transform: none;
 }
+
+/* map class names to design tokens */
+.status-open { background: var(--status-open-bg); color: var(--status-open-text); }
+.status-in_progress { background: var(--status-in_progress-bg); color: var(--status-in_progress-text); }
+.status-closed { background: var(--status-closed-bg); color: var(--status-closed-text); }
+
+/* Buttons */
+.btn {
+  display:inline-flex; align-items:center; gap:8px;
+  padding: 0.5rem 0.75rem; border-radius: 8px; border: none; cursor:pointer;
+}
+.btn-ghost { background: transparent; color: var(--accent-600); border: 1px solid rgba(30,58,138,0.08); }
+
+
+/* ===== Buttons ===== */
+.btn-primary {
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 22px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-light);
+}
+
+.btn-outline {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  padding: 8px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+
+.btn-outline:hover {
+  background-color: var(--accent-lighter);
+}
+
+
+/* ticket list grid (responsive) */
+.tickets-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+/* inline error text */
+.inline-error { color:#b91c1c; font-size:0.9rem; min-height:1.2em; }
+
+/* confirm dialog basic */
+.confirm-overlay { position: fixed; inset:0; display:flex; align-items:center; justify-content:center; background: rgba(2,6,23,0.36); z-index:2000; }
+.confirm-box { width:100%; max-width:420px; background:var(--color-surface); padding:16px; border-radius:12px; }
+
+/* responsive: mobile nav collapse */
+@media (max-width: 768px) {
+  .main-nav { display:none; }
+  .nav-toggle { display:inline-flex; }
+  .hero-inner { flex-direction:column; gap:var(--space-md); }
+  .hero-graphic { width: 220px; height:160px; }
+  .decoration-circle { width:88px; height:88px; }
+
+  .hero-title {
+    font-size: 36px;
+  }
+  .hero-subtitle {
+    font-size: 16px;
+  }
+  .nav-content nav {
+    display: flex;
+    gap: 12px;
+  }
+}
+
+/* accessible contrast helpers: ensure focus ring visible on interactive elements */
+button:focus, a:focus { outline: 3px solid rgba(30,58,138,0.14); outline-offset:2px; }
