@@ -34,7 +34,7 @@ export default function DashboardLayout() {
                             <span className="user-greeting">Hello, {user?.name || "User"}</span>
                             <button 
                                 onClick={handleLogout}
-                                className="logout-button"
+                                className="btn-primary"
                                 aria-label="Logout from your account"
                             >
                                 Logout

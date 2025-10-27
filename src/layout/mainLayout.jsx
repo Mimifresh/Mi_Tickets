@@ -12,6 +12,7 @@ export default function MainLayout() {
           <nav>
             <Link to="/auth/login" className="nav-link">Login</Link>
             <Link to="/auth/signup" className="btn-primary">Get Started</Link>
+            <Link to="/dashboard" className="btn-primary">Dashboard</Link>
           </nav>
         </div>
       </header>

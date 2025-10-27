@@ -73,6 +73,7 @@ export default function LoginPage() {
                     <Link to="/auth/signup"> Create one</Link>
                 </p>
             </form>
+            {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
             </div>
         </div>
         );
