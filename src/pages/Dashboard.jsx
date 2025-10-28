@@ -122,14 +122,10 @@ export default function Dashboard() {
     <div className="container dashboard-page" role="region" aria-labelledby="dashboard-heading">
       <section className="dashboard-overview">
         <div className="dashboard-hero card" aria-hidden={false}>
-          <div className="dashboard-hero-inner">
-            <div>
+          <div>
               <h2 id="dashboard-heading" className="h2">Dashboard Overview</h2>
               <p className="lead">Welcome back, {user?.name}! Here’s a quick summary of your tickets.</p>
-            </div>
-            <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
               <Link to="/tickets" className="btn-primary dashboard-view-tickets-btn">Manage Tickets</Link>
-            </div>
           </div>
         </div>
 

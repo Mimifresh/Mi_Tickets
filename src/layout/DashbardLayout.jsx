@@ -19,7 +19,6 @@ export default function DashboardLayout() {
                 <div className="container">
                     <div className="dashboard-header-inner">
                         <div className="dashboard-actions">
-                            <span className="user-greeting">Hello, {user?.name || "User"}</span>
                             <button 
                                 onClick={handleLogout}
                                 className="btn-primary"
