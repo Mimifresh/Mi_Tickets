@@ -259,36 +259,7 @@ html,body,#root {
   position: relative;
   overflow: visible;
 }
-.hero-inner { display:flex; align-items:center; justify-content:space-between; gap:2rem; padding: 0 var(--space-md); }
-.hero-graphic { position:relative; width:320px; height:220px; }
 
-/* wavy svg at bottom of hero */
-.hero::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:-1px;
-  height:120px;
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120"><path fill="%23f8fafc" d="M0,40 C280,100 560,0 720,40 C880,80 1160,0 1440,40 L1440 120 L0 120 Z"/></svg>') bottom center / cover no-repeat;
-  pointer-events:none;
-}
-
-/* overlapping decorative circle (one of at least two) */
-.decoration-circle {
-  position:absolute;
-  border-radius:50%;
-  width:120px; height:120px;
-  background: linear-gradient(135deg, rgba(185,29,115,0.12), rgba(30,58,138,0.12));
-  box-shadow: 0 8px 30px rgba(15,23,42,0.06);
-  z-index: 10;
-}
-
-/* utility examples to place circles */
-.dec-circle-top-left { left:-40px; top: 20px; transform: scale(1.1); }
-.dec-circle-bottom-right { right:-40px; bottom:-30px; transform: scale(0.9); }
-
-/* Cards (for stats, tickets, features) */
 .card {
   background: var(--color-surface);
   border-radius: var(--radius-md);
@@ -331,12 +302,6 @@ html,body,#root {
 .status-closed { background: var(--status-closed-bg); color: var(--status-closed-text); }
 
 /* Buttons */
-.btn {
-  display:inline-flex; align-items:center; gap:8px;
-  padding: 0.5rem 0.75rem; border-radius: 8px; border: none; cursor:pointer;
-}
-.btn-ghost { background: transparent; color: var(--accent-600); border: 1px solid rgba(30,58,138,0.08); }
-
 
 /* ===== Buttons ===== */
 .btn-primary {
@@ -440,4 +405,47 @@ button:focus, a:focus { outline: 3px solid rgba(30,58,138,0.14); outline-offset:
   .auth-subtitle {
     font-size: 13px;
   }
+}
+
+
+/* Emergency: restore clickability for interactive elements */
+/* Put this at the very end of App.css */
+
+/* Ensure nothing accidentally disables pointer events globally */
+* { pointer-events: auto !important; }
+
+/* Make sure pseudo-elements used for decoration do not block clicks */
+.hero::before,
+.hero::after,
+.hero-wave,
+.hero-wave svg,
+.hero-wave svg path {
+  pointer-events: none !important;
+}
+
+/* Ensure the navbar and primary UI layers are above decorative elements */
+.navbar,
+.container,
+.dashboard-root,
+.dashboard-main,
+.ticket-list-page,
+.ticket-form-section,
+.auth-page,
+.auth-card,
+.ticket-form,
+.card {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Ensure buttons are reachable and visible */
+button, a, input, select, textarea {
+  position: relative;
+  z-index: 10;
+}
+
+/* If there's any modal overlay accidentally visible but hidden,
+   make it non-blocking until you intentionally open it */
+.confirm-overlay[style*="display:none"], .confirm-overlay[hidden] {
+  pointer-events: none !important;
 }

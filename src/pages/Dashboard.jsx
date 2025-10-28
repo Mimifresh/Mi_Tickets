@@ -64,6 +64,7 @@ export default function Dashboard() {
                     <div id="other-desc" className="visually-hidden">Tickets in other statuses</div>
                 </div>
             </div>
+            <Link to="/tickets" className="btn-primary dashboard-view-tickets-btn">Manage Tickets</Link>
         </section>
     );
 }

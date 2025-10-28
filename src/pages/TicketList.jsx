@@ -56,6 +56,7 @@ export default function TicketList() {
 
   
   async function handleCreate(payload) {
+    setCreating(true);
     try {
       const newTicket = await ticketService.createTicket(payload);
 
@@ -64,6 +65,7 @@ export default function TicketList() {
       setToast({ message: "Ticket created successfully.", type: "success" });
     } catch (err) {
       setToast({ message: err.message || "Failed to create ticket.", type: "error" });
+        setCreating(false);
     }
   }
 
@@ -111,7 +113,7 @@ export default function TicketList() {
         <h1>Ticket Management</h1>
         <div>
           {!creating && !editingTicket && (
-            <button onClick={() => setCreating(true)} className="ticket-action-btn">Create New Ticket</button>
+            <button onClick={() => setCreating(true)} className="ticket-action-btn btn-primary">Create New Ticket</button>
           )}
         </div>
       </header>

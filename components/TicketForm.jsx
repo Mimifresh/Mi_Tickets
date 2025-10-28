@@ -90,7 +90,7 @@ export default function TicketForm({ initialData = {}, onSubmit, onCancel, submi
             {errors.priority && <div id="ticket-priority-error" className="error-message">{errors.priority}</div>}
 
             <div className="form-buttons">
-                <button type="submit" disabled={!isValid()} className="ticket-btn ticket-submit-btn">
+                <button type="submit" className="ticket-btn ticket-submit-btn">
                     {submitLabel.charAt(0).toUpperCase() + submitLabel.slice(1)}
                 </button>
                 <button type="button" onClick={onCancel} className="ticket-btn ticket-cancel-btn">
