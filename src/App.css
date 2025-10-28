@@ -89,7 +89,7 @@ html,body,#root {
   text-align: center;
   color: var(--text-color);
   background: var(--primary);
-  padding: 140px 0 80px;
+  padding: 40px 0 40px;
   position: relative;
   overflow: hidden;
   margin-bottom: 0;
