@@ -2,27 +2,26 @@
 
    --primary: #ffffff;
   --secondary: #f5f5f5;
-  /* Color palette / design tokens */
-  --color-bg: #f7fafc;           /* page background */
-  --color-surface: #ffffff;      /* cards, panels */
-  --color-text: #0f172a;         /* primary text */
-  --color-muted: #64748b;        /* subdued text */
+
+  --color-bg: #f7fafc;           
+  --color-surface: #ffffff;      
+  --color-text: #0f172a;       
+  --color-muted: #64748b;       
                /* primary accent (blue) */
-  --accent: #2e7d32; /* Main green */
-  --accent-light: #4caf50; /* Light hover green */
-  --accent-lighter: rgba(76, 175, 80, 0.08); /* Soft backgrounds */
-  --brand: #b91d73;              /* brand color (used sparingly) */
+  --accent: #2e7d32;
+  --accent-light: #4caf50; 
+  --accent-lighter: rgba(76, 175, 80, 0.08);
+  --brand: #b91d73;
 
   /* status colors (required mapping) */
-  --status-open-bg: #ecfdf5;     /* green 50 */
-  --status-open-text: #065f46;   /* green 700 */
+  --status-open-bg: #ecfdf5; 
+  --status-open-text: #065f46;  
 
-  --status-in_progress-bg: #fff7ed; /* amber 50 */
-  --status-in_progress-text: #92400e; /* amber-700 */
+  --status-in_progress-bg: #fff7ed; 
+  --status-in_progress-text: #92400e;
 
-  --status-closed-bg: #f8fafc;   /* gray/neutral */
-  --status-closed-text: #374151; /* gray-700 */
-
+  --status-closed-bg: #f8fafc; 
+  --status-closed-text: #374151; 
 
   /* sizing scale */
   --space-xs: 6px;
@@ -93,6 +92,8 @@ html,body,#root {
   padding: 140px 0 80px;
   position: relative;
   overflow: hidden;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .hero-title {
@@ -113,7 +114,22 @@ html,body,#root {
 
 .hero-wave {
   margin-top: 60px;
+  line-height: 0;
+  margin-bottom: -4px;
 }
+
+.hero-wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+
+}
+
+.hero-wave path {
+  margin-bottom: 0;
+  padding: 0;
+}
+  
 
 /* Decorative circles */
 .hero::before,
@@ -147,9 +163,7 @@ html,body,#root {
   width: 100%;
 }
 
-.hero-content {
-  margin-top: 6em;
-}
+
 
 
 /* ------ AUTH PAGE STYLES ------ */
@@ -246,19 +260,7 @@ html,body,#root {
 .brand { display:flex; align-items:center; gap:12px; }
 .brand-title { font-weight:700; font-size:1.125rem; margin:0; }
 
-/* nav */
-.main-nav { display:flex; gap: 0.75rem; align-items:center; }
-.nav-toggle { display:none; } /* shown on mobile */
-.nav-link { color:var(--color-text); text-decoration:none; padding:6px 8px; border-radius:6px; }
-.nav-link.active { background: rgba(30,58,138,0.06); color:var(--accent-600); font-weight:600; }
 
-/* hero with wavy bottom edge + overlapping circle */
-.hero {
-  background: linear-gradient(180deg,#ffffff 0%, #f8fafc 100%);
-  padding: var(--space-lg) 0;
-  position: relative;
-  overflow: visible;
-}
 
 .card {
   background: var(--color-surface);
@@ -274,34 +276,6 @@ html,body,#root {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
 }
-
-/* Ticket card specifics (also used by TicketCard component) */
-.ticket-card {
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-  padding: 14px;
-}
-.ticket-header { display:flex; align-items:center; justify-content:space-between; gap:12px; }
-.ticket-title { margin:0; font-weight:600; font-size:1rem; }
-.ticket-description { margin:0; color:var(--color-muted); font-size:0.95rem; }
-
-/* status tag mapping (use status as class suffix) */
-.status-tag {
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:0.82rem;
-  font-weight:600;
-  text-transform: none;
-}
-
-/* map class names to design tokens */
-.status-open { background: var(--status-open-bg); color: var(--status-open-text); }
-.status-in_progress { background: var(--status-in_progress-bg); color: var(--status-in_progress-text); }
-.status-closed { background: var(--status-closed-bg); color: var(--status-closed-text); }
-
-/* Buttons */
 
 /* ===== Buttons ===== */
 .btn-primary {
@@ -407,23 +381,8 @@ button:focus, a:focus { outline: 3px solid rgba(30,58,138,0.14); outline-offset:
   }
 }
 
-
-/* Emergency: restore clickability for interactive elements */
-/* Put this at the very end of App.css */
-
-/* Ensure nothing accidentally disables pointer events globally */
 * { pointer-events: auto !important; }
 
-/* Make sure pseudo-elements used for decoration do not block clicks */
-.hero::before,
-.hero::after,
-.hero-wave,
-.hero-wave svg,
-.hero-wave svg path {
-  pointer-events: none !important;
-}
-
-/* Ensure the navbar and primary UI layers are above decorative elements */
 .navbar,
 .container,
 .dashboard-root,
@@ -438,14 +397,111 @@ button:focus, a:focus { outline: 3px solid rgba(30,58,138,0.14); outline-offset:
   z-index: 2 !important;
 }
 
-/* Ensure buttons are reachable and visible */
+
 button, a, input, select, textarea {
   position: relative;
   z-index: 10;
 }
 
-/* If there's any modal overlay accidentally visible but hidden,
-   make it non-blocking until you intentionally open it */
 .confirm-overlay[style*="display:none"], .confirm-overlay[hidden] {
   pointer-events: none !important;
+}
+
+
+/* ---------------- Dashboard & Stats ------------------ */
+
+/* page wrapper */
+.dashboard-page {
+  padding: 28px 0 48px;
+  background: transparent;
+}
+
+/* hero card at top */
+.dashboard-hero {
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(46,125,50,0.04), rgba(255,255,255,0.0));
+  border-radius: 12px;
+  display: block;
+}
+
+/* inner hero layout */
+.dashboard-hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+/* stat cards grid */
+.stats-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-top: 18px;
+}
+
+/* stat card base */
+.stat-card {
+  padding: 18px;
+  border-radius: 10px;
+  text-align: left;
+  transition: transform .12s ease, box-shadow .12s ease;
+  border: 1px solid rgba(2,6,23,0.04);
+  background: var(--color-surface);
+  box-shadow: 0 8px 20px rgba(2,6,23,0.04);
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* hover/focus lift */
+.stat-card:focus,
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(2,6,23,0.06);
+  outline: none;
+}
+
+/* numeric value */
+.stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 6px;
+}
+
+/* label */
+.stat-label {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+/* Manage Tickets CTA (primary) */
+.dashboard-view-tickets-btn {
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* make sure cards & hero are full-width on narrow screens */
+@media (max-width: 720px) {
+  .dashboard-hero-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stat-value { font-size: 22px; }
+}
+
+/* very small view */
+@media (max-width: 420px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .dashboard-page { padding: 18px 0 36px; }
 }

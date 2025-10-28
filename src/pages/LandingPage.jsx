@@ -13,8 +13,6 @@ export default function LandingPage() {
           <Link to="/auth/login" className="btn-outline">Login</Link>
         </div>
       </div>
-
-      {/* ✅ Decorative wave background */}
       <div className="hero-wave">
          <svg viewBox="0 0 1440 320">
             <path
